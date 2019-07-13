@@ -6,18 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>LL | Hexo</title>
+  <title>C++ unsequenced modification and access to .. | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="LL">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/LL/index.html">
+  <meta name="description" content="C++ 阶乘递归出现unsequenced modification and access to出现问题的代码： 12345678/***      利用递归实现阶乘         ***/int fact(int val)&amp;#123;    if(val == 1)        return 1;    else        return val*fact(--val);&amp;#125;  ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ unsequenced modification and access to ..">
+<meta property="og:url" content="http://yoursite.com/2019/07/13/C-unsequenced-modification-and-access-to/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="C++ 阶乘递归出现unsequenced modification and access to出现问题的代码： 12345678/***      利用递归实现阶乘         ***/int fact(int val)&amp;#123;    if(val == 1)        return 1;    else        return val*fact(--val);&amp;#125;  ​">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://liyang-1259327997.cos.ap-beijing.myqcloud.com/290885.jpg">
-<meta property="og:updated_time" content="2019-07-12T11:07:50.702Z">
+<meta property="og:updated_time" content="2019-07-13T10:54:54.539Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LL">
-<meta name="twitter:image" content="https://liyang-1259327997.cos.ap-beijing.myqcloud.com/290885.jpg">
+<meta name="twitter:title" content="C++ unsequenced modification and access to ..">
+<meta name="twitter:description" content="C++ 阶乘递归出现unsequenced modification and access to出现问题的代码： 12345678/***      利用递归实现阶乘         ***/int fact(int val)&amp;#123;    if(val == 1)        return 1;    else        return val*fact(--val);&amp;#125;  ​">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -169,27 +170,42 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-LL" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-C-unsequenced-modification-and-access-to" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      LL
+      C++ unsequenced modification and access to ..
     </h1>
   
 
         
         <a href="" class="archive-article-date">
-  	<time datetime="2019-07-10T12:17:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
+  	<time datetime="2019-07-13T09:57:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://liyang-1259327997.cos.ap-beijing.myqcloud.com/290885.jpg" alt="代码段"></p>
+        <h1 id="C-阶乘递归出现unsequenced-modification-and-access-to"><a href="#C-阶乘递归出现unsequenced-modification-and-access-to" class="headerlink" title="C++ 阶乘递归出现unsequenced modification and access to"></a>C++ 阶乘递归出现unsequenced modification and access to</h1><p>出现问题的代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/***      利用递归实现阶乘         ***/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(val == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> val*fact(--val);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​&emsp;&emsp;我利用的编译器是MinGW[^1],出现问题的代码在<u>return val <em>fact(*</em>–val**)</u>。由于编辑器的不同会出现不同的结果，编辑器可能会出现以下两种结果：</p>
+<h4 id="一-从右向左运行"><a href="#一-从右向左运行" class="headerlink" title="一.从右向左运行"></a>一.从右向左运行</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">val--;</span><br><span class="line"><span class="function">val*<span class="title">fact</span><span class="params">(val)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;此时左右的val是同一值。</p>
+<h4 id="二-从左向右运行（理想）"><a href="#二-从左向右运行（理想）" class="headerlink" title="二.从左向右运行（理想）"></a>二.从左向右运行（理想）</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> temp = --val;</span><br><span class="line"><span class="function">val*<span class="title">fact</span><span class="params">(temp)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;上面的运行结果为24；也就是4！。之所以导致这样的结果就是因为编辑器以第一种运行。而且我在VS Studio上运行也是这个结果。问题就出现在了编译器的运行顺序不确定，我在C++ primer的书籍中也找到的答案。<br>&emsp;&emsp;书里说到：大多数运算符没有规定运算符的求值顺序，一般情况不会有什么影响，但是当一条子表达式改变了某个运算符的值，另外一个子表达式又要使用该值，运算符的顺序就很重要了。所以应该提防复合表达式错用两个运算符。<strong>（参见4.6节，133页）</strong></p>
+<hr>
+<h3 id="改进方式"><a href="#改进方式" class="headerlink" title="改进方式"></a>改进方式</h3><p>&emsp;&emsp;如果改进的话，就要避免复杂的复合运算，下面是我改进的地方。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fact</span><span class="params">(<span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(val == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;   </span><br><span class="line">        val--; <span class="comment">//把运算符分开进行运算，来决定他的运行顺序</span></span><br><span class="line">        <span class="keyword">return</span> val*fact(val); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong> 在计算5！的时候注意调用fact(5+1);</p>
+<p>[^1]:<strong>推荐：</strong> 鼓励大家使用CLion,JetBrains公司的，利用IDIE使用起来简直不要太爽！</p>
 
       
 
@@ -269,7 +285,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/10/LL/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/13/C-unsequenced-modification-and-access-to/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +299,9 @@
   
 <nav id="article-nav">
   
-    <a href="../../11/Third/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Third
-        
-      </div>
-    </a>
   
-  
-    <a href="../Low/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Low</div>
+    <a href="../我的第一篇博客/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
