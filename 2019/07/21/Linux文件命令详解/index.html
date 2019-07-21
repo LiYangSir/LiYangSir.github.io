@@ -6,18 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Test | Hexo</title>
+  <title>Linux 文件/目录操作详解 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
-<meta property="og:title" content="Test">
-<meta property="og:url" content="http://yoursite.com/2019/07/10/Test/index.html">
+  <meta name="description" content="Linux 文件/目录操作详解[TOC] 初识Linux&amp;emsp;&amp;emsp;知道Linux的人都知道，它的命令行十分的丰富，很多人不学他的原因也就是命令行的不友好，需要背诵命令行，比起Windows的图形界面枯燥很多，但其实如果真正想学到底层的东西，还是学习一Linux比较好，就像学习C语言不接触指针一样。&amp;emsp;&amp;emsp;命令行还是很有意思的东西，而且玩git也是需要Linux的基础，">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 文件&#x2F;目录操作详解">
+<meta property="og:url" content="http://yoursite.com/2019/07/21/Linux文件命令详解/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux 文件/目录操作详解[TOC] 初识Linux&amp;emsp;&amp;emsp;知道Linux的人都知道，它的命令行十分的丰富，很多人不学他的原因也就是命令行的不友好，需要背诵命令行，比起Windows的图形界面枯燥很多，但其实如果真正想学到底层的东西，还是学习一Linux比较好，就像学习C语言不接触指针一样。&amp;emsp;&amp;emsp;命令行还是很有意思的东西，而且玩git也是需要Linux的基础，">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190710160816763.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTAzNjYw,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-07-10T12:06:18.161Z">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/q.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/w.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/e.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/r.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/t.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/y.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/u.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/i.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/o.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/p.png">
+<meta property="og:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/a.png">
+<meta property="og:updated_time" content="2019-07-21T09:04:38.450Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Test">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190710160816763.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTAzNjYw,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="Linux 文件&#x2F;目录操作详解">
+<meta name="twitter:description" content="Linux 文件/目录操作详解[TOC] 初识Linux&amp;emsp;&amp;emsp;知道Linux的人都知道，它的命令行十分的丰富，很多人不学他的原因也就是命令行的不友好，需要背诵命令行，比起Windows的图形界面枯燥很多，但其实如果真正想学到底层的东西，还是学习一Linux比较好，就像学习C语言不接触指针一样。&amp;emsp;&amp;emsp;命令行还是很有意思的东西，而且玩git也是需要Linux的基础，">
+<meta name="twitter:image" content="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/q.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -169,27 +183,143 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Test" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Linux文件命令详解" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Test
+      Linux 文件/目录操作详解
     </h1>
   
 
         
         <a href="" class="archive-article-date">
-  	<time datetime="2019-07-10T11:51:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
+  	<time datetime="2019-07-21T09:01:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://img-blog.csdnimg.cn/20190710160816763.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNTAzNjYw,size_16,color_FFFFFF,t_70" alt="同步"></p>
+        <h1 id="Linux-文件-目录操作详解"><a href="#Linux-文件-目录操作详解" class="headerlink" title="Linux 文件/目录操作详解"></a>Linux 文件/目录操作详解</h1><p>[TOC]</p>
+<h2 id="初识Linux"><a href="#初识Linux" class="headerlink" title="初识Linux"></a>初识Linux</h2><p>&emsp;&emsp;知道Linux的人都知道，它的命令行十分的丰富，很多人不学他的原因也就是命令行的不友好，需要背诵命令行，比起Windows的图形界面枯燥很多，但其实如果真正想学到底层的东西，还是学习一Linux比较好，就像学习C语言不接触指针一样。<br>&emsp;&emsp;命令行还是很有意思的东西，而且玩git也是需要Linux的基础，玩服务器也需要Linux服务器。大家不要说Windows有Windows Services 2016 R2服务器，其实一些大公司的服务器维护全部是Linux。比起Windows来说，Linux服务器占用的空间要小很多，消耗的资源以及成本都会很低，而且更新也比较慢，所以Linux还是很值得学习的，以后找工作也方面也会很多。大家不要因为难而不去学习，因为难，所以人少，因为人少，所以这就是机会。以后我就和大家一起来学习Linux。<br>&emsp;&emsp;Linux的安装后期会给大家补上，这一篇我主要讲解Linux入门的一些文件基本命令。</p>
+<h2 id="一、文件-目录显示命令-ls"><a href="#一、文件-目录显示命令-ls" class="headerlink" title="一、文件/目录显示命令 ls"></a>一、文件/目录显示命令 <code>ls</code></h2><p>&emsp;&emsp;<strong>命令格式</strong>：ls [- 选项][参数]<br>&emsp;&emsp;选项包含下面的的内容以及含义</p>
+<ol>
+<li><table>
+<thead>
+<tr>
+<th align="center">选项</th>
+<th align="left">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-a</td>
+<td align="left">all 显示所有文件，包括隐藏文件（以.开头的文件）</td>
+</tr>
+<tr>
+<td align="center">-l</td>
+<td align="left">long 长格式显示 可以后附h选项便是人性化显示</td>
+</tr>
+<tr>
+<td align="center">-d</td>
+<td align="left">directory 查看目录属性</td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<p><strong>实例：</strong></p>
+<ol>
+<li><p><strong>ls</strong><br>显示当前目录下的文件（不包括隐藏文件）<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/q.png" alt="q"></p>
+</li>
+<li><p><strong>ls -a</strong> &emsp;&emsp; (<strong>有空格</strong>)<br>显示所有文件，包括隐藏文件，文件以.开头<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/w.png" alt="w"></p>
+</li>
+<li><p><strong>ls -l</strong><br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/e.png" alt="e"><br>&emsp;   长格式显示时包含了文件的所有属性，主要包括文件权限、所有者权限、所属组权限、所占空间、修改时间以及文件名。其中权限主要包含3个类别，所有者、所属组以及其他。其中每个类别对应的权限为r(可读)、w(可写)、x(可执行)。<br>例如: <strong>-rw-r–r–</strong>   拆分为3类</p>
+<table>
+<thead>
+<tr>
+<th align="center">文件类型</th>
+<th align="center">所有者</th>
+<th align="center">所属组</th>
+<th align="center">其他</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-(文件类型)</td>
+<td align="center">rw-（可读写不可执行）</td>
+<td align="center">r–（只读）</td>
+<td align="center">r–（只读）</td>
+</tr>
+<tr>
+<td align="center">所占空间以字节为单位,如果想以KB显示使用-lh即可。</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+</li>
+<li><p><strong>ls -i</strong><br>显示文件的节点，类似于C语言的地址一样，一个文件对应一个自己的属性节点。</p>
+</li>
+</ol>
+<h2 id="二、目录创建命令-mkdir"><a href="#二、目录创建命令-mkdir" class="headerlink" title="二、目录创建命令 mkdir"></a>二、目录创建命令 <code>mkdir</code></h2><p><strong>命令格式：</strong> mkdir&ensp;[-p]&ensp;目录名</p>
+<ol>
+<li><strong>mkdir /tmp/liyang</strong><br>在绝对路径/tmp下创建liyang的文件夹</li>
+<li><strong>mkdir -p /tmp/test/liyang</strong><br>递归创建，因为我/tmp下没有test文件，所以使用-p就可以直接递归创建。</li>
+<li><strong>mkdir /tmp/liyang /tmp/cangjing</strong><br>可以一次创建多个目录。</li>
+</ol>
+<h2 id="三、目录转移命令-cd"><a href="#三、目录转移命令-cd" class="headerlink" title="三、目录转移命令 cd"></a>三、目录转移命令 <code>cd</code></h2><p>​        cd转移命令可以转移<code>绝对路径</code>和<code>相对路径</code></p>
+<ol>
+<li><strong>cd /tmp/liyang</strong><br>转移到tmp/liyang文件夹下<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/r.png" alt="r"></li>
+<li><strong>cd liyang</strong><br>转移到当前目录下liyang的文件夹下</li>
+<li><strong>cd ..</strong><br>返回上一级目录</li>
+</ol>
+<h2 id="四、当前目录显示命令-pwd"><a href="#四、当前目录显示命令-pwd" class="headerlink" title="四、当前目录显示命令 pwd"></a>四、当前目录显示命令 pwd</h2><p>​        显示当前所在目录<br>&emsp;&emsp;<strong>无选项与参数</strong><br>&emsp;&emsp;<img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/t.png" alt="t"></p>
+<h2 id="五、文件处理命令-rmdir"><a href="#五、文件处理命令-rmdir" class="headerlink" title="五、文件处理命令 rmdir"></a>五、文件处理命令 <code>rmdir</code></h2><p>&emsp;&emsp;此命令只能删除<strong>空白</strong>目录<br>&emsp;&emsp;<strong>命令格式：</strong> rmdir 目录的路径<br>&emsp;&emsp;<strong>rmdir /tmp/liyang</strong></p>
+<h2 id="六、文件-目录复制命令-cp"><a href="#六、文件-目录复制命令-cp" class="headerlink" title="六、文件/目录复制命令 cp"></a>六、文件/目录复制命令 <code>cp</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> cp -rp [源文件] [目标文件] </p>
+<p>&emsp;&emsp; <strong>-r</strong> 复制目录<br>&emsp;&emsp; <strong>-p</strong> 保留文件属性（时间属性等等）</p>
+<ol>
+<li><strong>cp /root/a1.php /etc</strong><br>复制grup.conf文件到/etc目录下  </li>
+</ol>
+<p><strong>注意：</strong> /etc/grup.conf的文件属性已经变化，例如时间属性已经变为当前时间，也就是创建时间。<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/y.png" alt="y"></p>
+<ol start="2">
+<li><strong>cp -r /root/liyang /etc</strong><br>复制liyang的文件夹到/etc目录下。</li>
+<li><strong>cp -r /root/liyang /etc/cangjing</strong><br>复制liyang的文件夹并且重命名为cangjing到/etc目录下。<br>==有一坑：== 有一些同学可能好奇为啥不是创建cangjing文件夹然后再把liyang文件复制进去。这里提醒大家的是之所这样实现是因为etc目录下没有cangjing这个目录，所以系统自动重命名，如果etc文件夹有着一个目录，就是复制到cangjing目录下。</li>
+<li><strong>cp /root/a1.php /root/a2.php /etc/liyang</strong><br>复制多个文件到一个目录下。</li>
+</ol>
+<h2 id="七、文件-目录的移动剪切命令-mv"><a href="#七、文件-目录的移动剪切命令-mv" class="headerlink" title="七、文件/目录的移动剪切命令 mv"></a>七、文件/目录的移动剪切命令 <code>mv</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> mv [旧文件名] [新文件名]</p>
+<ol>
+<li><strong>mv /root/liyang/a1.php /tmp/liyang</strong><br>移动a1.php到liyang文件夹下。<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/u.png" alt="u"></li>
+<li><strong>mv /root/liyang/a1.php /root/liyang/a3.php</strong></li>
+</ol>
+<p><strong>重命名 :</strong> a1.php –&gt;a2.php</p>
+<h2 id="八、文件-目录的删除命令-rm"><a href="#八、文件-目录的删除命令-rm" class="headerlink" title="八、文件/目录的删除命令 rm"></a>八、文件/目录的删除命令 <code>rm</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> rm [-rf ] 文件/目录</p>
+<ul>
+<li>-r: 删除目录</li>
+<li>-f: 强制执行<br>一般情况都是-rf 一起使用，否则每删一个目录系统都要提问是否删除。</li>
+</ul>
+<p><strong>rm -r liyang</strong><br>删除liyang的文件夹<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/i.png" alt="i"><br>每删除一个文件系统都会提示你是否删除，所以一般使用 -f 直接强制删除。</p>
+<h2 id="九、新建文件命令-touch"><a href="#九、新建文件命令-touch" class="headerlink" title="九、新建文件命令 touch"></a>九、新建文件命令 <code>touch</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> touch 文件名<br>&emsp;&emsp;<strong>touch a1.php</strong><br>&emsp;&emsp;创建a1.php在当前目录</p>
+<h2 id="十、文件查看命令-cat"><a href="#十、文件查看命令-cat" class="headerlink" title="十、文件查看命令 cat"></a>十、文件查看命令 <code>cat</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> cat [-n] 文件名</p>
+<ul>
+<li>-n  显示行号</li>
+</ul>
+<ol>
+<li><strong>cat /root/a1.php</strong><br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/o.png" alt="o"></li>
+<li><strong>cat -n /root/a1.php</strong>  &emsp;&emsp;&emsp;&emsp;显示行号<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/p.png" alt="p"></li>
+</ol>
+<h2 id="十一、文件查看优化命令-more和less"><a href="#十一、文件查看优化命令-more和less" class="headerlink" title="十一、文件查看优化命令 more和less"></a>十一、文件查看优化命令 <code>more</code>和<code>less</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> more/less 文件名<br>&emsp;&emsp;这两个命令适用于查看大文件内容，因为使用cat命令是一只刷新这个屏幕直至显示完全，所以采用more和less命令可以分页显示。</p>
+<ul>
+<li><strong>空格/f：</strong> 向下翻页</li>
+<li><strong>回车：</strong>  换行</li>
+<li><strong>q或者Q：</strong> 推出</li>
+</ul>
+<p>&emsp;&emsp;但是more命令只能向下翻页，不能向上翻页，所以less命令可以向下或者向上翻页。<br>less除了包含上面的使用方法还包含：</p>
+<ul>
+<li><strong>PagOn:</strong> 向上翻页</li>
+<li><strong>上箭头：</strong> 向上换行</li>
+</ul>
+<h2 id="十二、固定查看文件内容命令-head和tail"><a href="#十二、固定查看文件内容命令-head和tail" class="headerlink" title="十二、固定查看文件内容命令 head和tail"></a>十二、固定查看文件内容命令 <code>head</code>和<code>tail</code></h2><p>&emsp;&emsp;<strong>命令格式：</strong> head/tail -n [数字] 文件路径<br>&emsp;&emsp;如果未指定数字则默认显示10行。<br>&emsp;&emsp;<strong>含义：</strong> head:固定查看文件的前几行数据；tail:固定查看文件后几行数据。<br><img src="https://m-markdown.oss-cn-beijing.aliyuncs.com/Linux%E5%85%A5%E9%97%A8/a.png" alt="a"></p>
 
       
 
@@ -219,6 +349,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -269,7 +410,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/10/Test/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/07/21/Linux文件命令详解/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -283,18 +424,9 @@
   
 <nav id="article-nav">
   
-    <a href="../../11/Third/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Third
-        
-      </div>
-    </a>
   
-  
-    <a href="../Second/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Second</div>
+    <a href="../../13/C-unsequenced-modification-and-access-to/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">C++ unsequenced modification and access to ..</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -418,6 +550,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
