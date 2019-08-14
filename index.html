@@ -168,6 +168,127 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-solo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/08/14/solo/">浅谈vector</a>
+    </h1>
+  
+
+        
+        <a href="2019/08/14/solo/" class="archive-article-date">
+  	<time datetime="2019-08-14T12:13:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="浅谈Vector"><a href="#浅谈Vector" class="headerlink" title="浅谈Vector"></a>浅谈Vector</h1><p>@<a href="目录">TOC</a></p>
+<p>&emsp;&emsp;这里我主要说的是C++的vector,vector是一种顺序容器，顺序容器区别去有序容器，也就是的存储位置与大小无关，只与数据加入文件是的顺序有关。顺序容易还包括deque、list、forword_list、array、string。</p>
+<p><strong>注意</strong>:  随着C++泛型编程的逐渐强大，在实际操作中尽量减少使用数组，因为容器的出现，可以使我们在实际开发项目中将数组的使用降至最低。</p>
+<h2 id="1、容器基本操作"><a href="#1、容器基本操作" class="headerlink" title="1、容器基本操作"></a>1、容器基本操作</h2><table>
+<thead>
+<tr>
+<th align="center">类型别名</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">iterator</td>
+<td align="center">顾名思义，迭代器</td>
+</tr>
+<tr>
+<td align="center">const_iterator</td>
+<td align="center">只读迭代器</td>
+</tr>
+<tr>
+<td align="center">size_type</td>
+<td align="center">无符号整型，最大值为容器的大小</td>
+</tr>
+<tr>
+<td align="center">difference_type</td>
+<td align="center">带符号整形，两个迭代器之间的距离</td>
+</tr>
+<tr>
+<td align="center">value_type</td>
+<td align="center">元素类型</td>
+</tr>
+<tr>
+<td align="center">const_reference</td>
+<td align="center">元素const左值类型</td>
+</tr>
+</tbody></table>
+<h2 id="2、vector-初始化"><a href="#2、vector-初始化" class="headerlink" title="2、vector 初始化"></a>2、vector 初始化</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> namespce <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec ; <span class="comment">//默认构造函数</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec2(vec) ; <span class="comment">//拷贝构造函数</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec3(b,e); <span class="comment">//利用迭代器进行初始化</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec4&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;; <span class="comment">//常用的初始化操作</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec5(<span class="number">10</span>); <span class="comment">//创建10个元素，值默认为0</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vec6(<span class="number">10</span>,<span class="number">6</span>); <span class="comment">//创建10个元素，值初始化6</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp;为了书写方便，后面的书写采用简便书写的方式，这里默认大家已经有了main函数；</p>
+<h2 id="3、vector的赋值与swap"><a href="#3、vector的赋值与swap" class="headerlink" title="3、vector的赋值与swap"></a>3、vector的赋值与swap</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vec = vec2; <span class="comment">//将vec2的元素赋值给vec2</span></span><br><span class="line">vec = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;; <span class="comment">//vec替换为列表元素</span></span><br><span class="line">vec.swap(vec2); <span class="comment">//交换两者的元素</span></span><br><span class="line">swap(vec1,vec2); <span class="comment">//等价</span></span><br><span class="line"></span><br><span class="line">vec.assign(b,e); <span class="comment">//vec里面的元素换为迭代器b e之间的内容</span></span><br><span class="line">vec.assign(n,t);<span class="comment">//vec里面的元素更改为n个t</span></span><br><span class="line">vec.assign(i1); <span class="comment">//vec的内容更改为列表i1；</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、vector的增删改除"><a href="#4、vector的增删改除" class="headerlink" title="4、vector的增删改除"></a>4、vector的增删改除</h2><h3 id="1-增加元素"><a href="#1-增加元素" class="headerlink" title="1.增加元素"></a>1.增加元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vec.insert(p,t);<span class="comment">// 在迭代器p所指的位置之前插入元素t,返回新插入元素的迭代器      直接法</span></span><br><span class="line">vec.insert(p,n,t); <span class="comment">//与vec.insert(p,array)相同        抽象法</span></span><br><span class="line">vec.insert(p,b,e); <span class="comment">//在迭代器p位置插入迭代器b,e之间的元素，返回新插入第一个元素的迭代器      间接法</span></span><br><span class="line">vec.insert(p,<span class="built_in">array</span>); <span class="comment">//在迭代器p位置插入元素值列表array,返回第一个元素的迭代器      直接法</span></span><br><span class="line"></span><br><span class="line">vec.push_back(t);<span class="comment">//在vec末端插入元素t,返回void</span></span><br><span class="line">vec.push_front(t);<span class="comment">//在vec开始端插入t,返回void</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-访问元素"><a href="#2-访问元素" class="headerlink" title="2.访问元素"></a>2.访问元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vec.back();  <span class="comment">//返回最后一个元素的引用</span></span><br><span class="line">vec.front(); <span class="comment">//返回第一个元素的引用</span></span><br><span class="line"></span><br><span class="line">vec[n];      <span class="comment">//下标访问 返回引用</span></span><br><span class="line">vec.at[n];   <span class="comment">//at访问 比较安全 如果越界 抛出out of range 的异常 返回引用</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-删除元素"><a href="#3-删除元素" class="headerlink" title="3.删除元素"></a>3.删除元素</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">vec.pop_back(); <span class="comment">//删除vec的尾元素 返回void</span></span><br><span class="line">vec.pop_front();<span class="comment">//删除vec的首元素，返回void</span></span><br><span class="line"></span><br><span class="line">vec.erase(p);  <span class="comment">//删除迭代器p所指的元素 返回删除元素的前一个元素的迭代器</span></span><br><span class="line">vec.erase(b,e);<span class="comment">//删除迭代器b,e之间的元素 ，返回最后一个被删除元素的之后的迭代器</span></span><br><span class="line"></span><br><span class="line">vec.clear();   <span class="comment">//删除vec的所有元素</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4-元素的大小"><a href="#4-元素的大小" class="headerlink" title="4.元素的大小"></a>4.元素的大小</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vec.size();<span class="comment">//返回元素的数目</span></span><br><span class="line">vec.max_size();<span class="comment">//返回可保存元素的最大大小</span></span><br><span class="line">vec.empty();<span class="comment">//vec是否为空</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MarkDown</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2019/08/14/solo/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux文件命令详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -671,11 +792,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++</a>
               </li>
              
               <li class="article-tag-list-item">
