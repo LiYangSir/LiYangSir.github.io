@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: C++ | Hexo</title>
+  <title>fslove - Matlab求解多元多次方程组 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/C/index.html">
+  <meta name="description" content="fslove - Matlab求解多元多次方程组简介： 之前看到网上的一些资料良莠不齐，各种转载之类的，根本无法解决实际问题，所以我打算把自己的学到的总结一下，以实例出发讲解fsolve。示例如下：$$\begin{cases}2x_1 - x_2 = e^{ax_1} \-x_1 + 2x_2 = e^{ax_2} \\end{cases}$$具体的求解过程在后面 点击跳转 1. fsolve的">
+<meta name="keywords" content="matlab,fsolve">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fslove - Matlab求解多元多次方程组">
+<meta property="og:url" content="http://yoursite.com/2019/09/25/fsolve/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="fslove - Matlab求解多元多次方程组简介： 之前看到网上的一些资料良莠不齐，各种转载之类的，根本无法解决实际问题，所以我打算把自己的学到的总结一下，以实例出发讲解fsolve。示例如下：$$\begin{cases}2x_1 - x_2 = e^{ax_1} \-x_1 + 2x_2 = e^{ax_2} \\end{cases}$$具体的求解过程在后面 点击跳转 1. fsolve的">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-25T13:32:14.686Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="fslove - Matlab求解多元多次方程组">
+<meta name="twitter:description" content="fslove - Matlab求解多元多次方程组简介： 之前看到网上的一些资料良莠不齐，各种转载之类的，根本无法解决实际问题，所以我打算把自己的学到的总结一下，以实例出发讲解fsolve。示例如下：$$\begin{cases}2x_1 - x_2 = e^{ax_1} \-x_1 + 2x_2 = e^{ax_2} \\end{cases}$$具体的求解过程在后面 点击跳转 1. fsolve的">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -53,9 +58,9 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="../../index.html">主页</a></li>
+				<li><a href="../../../../index.html">主页</a></li>
 	        
-				<li><a href="../../tags/随笔/">随笔</a></li>
+				<li><a href="../../../../tags/随笔/">随笔</a></li>
 	        
 			</ul>
 		</nav>
@@ -83,7 +88,7 @@
 		        
 					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 		        
-					<a class="qq" target="_blank" href="../../1315223452" title="qq"><i class="icon-qq"></i></a>
+					<a class="qq" target="_blank" href="../../../../1315223452" title="qq"><i class="icon-qq"></i></a>
 		        
 					<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
 		        
@@ -132,7 +137,7 @@
 			        
 						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
 			        
-						<a class="qq" target="_blank" href="../../1315223452" title="qq"><i class="icon-qq"></i></a>
+						<a class="qq" target="_blank" href="../../../../1315223452" title="qq"><i class="icon-qq"></i></a>
 			        
 						<a class="weixin" target="_blank" href="#" title="weixin"><i class="icon-weixin"></i></a>
 			        
@@ -149,9 +154,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 50%"><a href="../../index.html">主页</a></li>
+					<li style="width: 50%"><a href="../../../../index.html">主页</a></li>
 		        
-					<li style="width: 50%"><a href="../../tags/随笔/">随笔</a></li>
+					<li style="width: 50%"><a href="../../../../tags/随笔/">随笔</a></li>
 		        
 				</ul>
 			</nav>
@@ -166,60 +171,266 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-fsolve" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="../../archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="../../2019/07/13/C-unsequenced-modification-and-access-to/" class="archive-article-date">
-  	<time datetime="2019-07-13T09:57:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-13</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="../../2019/07/13/C-unsequenced-modification-and-access-to/">C++ unsequenced modification and access to ..</a>
+    <h1 class="article-title" itemprop="name">
+      fslove - Matlab求解多元多次方程组
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="" class="archive-article-date">
+  	<time datetime="2019-09-25T13:31:02.203Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="fslove-Matlab求解多元多次方程组"><a href="#fslove-Matlab求解多元多次方程组" class="headerlink" title="fslove - Matlab求解多元多次方程组"></a>fslove - Matlab求解多元多次方程组</h1><p><strong>简介：</strong> 之前看到网上的一些资料良莠不齐，各种转载之类的，根本无法解决实际问题，所以我打算把自己的学到的总结一下，以实例出发讲解fsolve。<br>示例如下：<br>$$<br>\begin{cases}<br>2x_1 - x_2 = e^{ax_1} \<br>-x_1 + 2x_2 = e^{ax_2} \<br>\end{cases}<br>$$<br>具体的求解过程在后面 <a href="#jump">点击跳转</a></p>
+<h2 id="1-fsolve的基本使用"><a href="#1-fsolve的基本使用" class="headerlink" title="1. fsolve的基本使用"></a>1. fsolve的基本使用</h2><p>调用格式一：</p>
+<blockquote>
+<p>X = fslove(FUN,X0)</p>
+<p>功能：给定初值X0，求解方程组的解，X就是返回的解</p>
+</blockquote>
+<p>调用格式二：</p>
+<blockquote>
+<p>X = fsolve(FUN,X0,OPTIONS)</p>
+<p>功能:同上，并解决默认参数优化为options指定值</p>
+</blockquote>
+<p>调用格式三：</p>
+<blockquote>
+<p>[X,FVAL] = fslove(FUN,X0,…)</p>
+<p>功能：返回X处目标函数值</p>
+</blockquote>
+<p>调用格式四：</p>
+<blockquote>
+<p>[X,FVAL,EXITFLAG] = fslove(FUN,X0,…)</p>
+<p>功能：返回EXITFLAG的值，用来描述计算退出的条件，其中EXITFLAG取值和相应的含义如下表。（主要作为判断条件来使用）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">EXITFLAG</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">函数fslove收敛于解X处</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">X的变化小于限制</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">残差变化小于限制</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">重要搜索方向小于限制</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">达到最大迭代次数或者评价标准</td>
+</tr>
+<tr>
+<td align="center">-1</td>
+<td align="center">算法由输出函数终止</td>
+</tr>
+<tr>
+<td align="center">-2</td>
+<td align="center">算法无法收敛到解的点</td>
+</tr>
+<tr>
+<td align="center">-3</td>
+<td align="center">信赖域半径太小</td>
+</tr>
+<tr>
+<td align="center">-4</td>
+<td align="center">线搜索在当前不能充分减少残差</td>
+</tr>
+</tbody></table>
+<p>调用格式五：</p>
+<blockquote>
+<p>[X,FVAL,EXITFLAG,OUTPUT] = fslove(FUN,X0,…)</p>
+<p>功能：包含OUTPUT的输出</p>
+</blockquote>
+<p>调用格式六：</p>
+<blockquote>
+<p>[X,FVAL,EXITFLAG,OUTPUT,JACOB] = fslove(FUN,X0,…)</p>
+<p>功能：返回雅各比矩阵</p>
+</blockquote>
+<p><span id="jump"></span></p>
+<h2 id="2-方程求解"><a href="#2-方程求解" class="headerlink" title="2.方程求解"></a>2.方程求解</h2><p>(1) 编制函数文件fun.m</p>
+<p>编写函数主要用来书写函数的表达式。</p>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function f <span class="built_in">=</span> fun(x,a,b,c)  <span class="comment">% b c可以是随意的参数</span></span><br><span class="line">f1 <span class="built_in">=</span> <span class="number">2</span>*x(<span class="number">1</span>)-x(<span class="number">2</span>)-exp(a*x(<span class="number">1</span>));</span><br><span class="line">f2 <span class="built_in">=</span> -x(<span class="number">1</span>)+<span class="number">2</span>*x(<span class="number">2</span>)-exp(a*x(<span class="number">2</span>));</span><br><span class="line">f <span class="built_in">=</span> [f1;f2];</span><br><span class="line"></span><br><span class="line"><span class="comment">% 也可以写成下面的方式</span></span><br><span class="line"><span class="comment">% f = [2*x(1)-x(2)-exp(a*x(1));-x(1)+2*x(2)-exp(a*x(2))];</span></span><br></pre></td></tr></table></figure>
+
+<p>(2) 给定函数的参数值和初值（解在周围寻找）</p>
+<p>调用求解函数 fslove</p>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a <span class="built_in">=</span> -<span class="number">1</span>;</span><br><span class="line">&gt;&gt; x0 <span class="built_in">=</span> [-<span class="number">5</span>,-<span class="number">4</span>];</span><br><span class="line">&gt;&gt; [x,FVAL,EXITFLAG,OUTPUT,JACOB] <span class="built_in">=</span> fsolve(@(x)fun(x,a,<span class="number">1</span>,<span class="number">1</span>),x0);</span><br></pre></td></tr></table></figure>
+
+<p>@(x)fun(x,a,1,1)调用fun函数，函数的参数是a,1,1,求解x的值<br>执行后调用x返回，也就是X的解。</p>
+<blockquote>
+<p>x =</p>
+<p>&emsp;&emsp;0.5671&emsp;&emsp;&emsp;0.5671</p>
+</blockquote>
+<p>调用FVAL显示在目标解的函数值，可以看出，FVAL越小越接近真实解。</p>
+<blockquote>
+<p>FVAL =</p>
+<p>&emsp;&emsp;1.0e-09 *</p>
+<p>&emsp;&emsp;-0.4242<br>&emsp;&emsp;-0.3753</p>
+</blockquote>
+<p>调用EXITFLAG 结合上面的表格可以知道，函数FSOLVE收敛于解X处。</p>
+<blockquote>
+<p>EXITFLAG =</p>
+<p>&emsp;&emsp;1</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">matlab,fsolve</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/25/fsolve/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="../../../08/28/Java/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java基本程序结构</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -242,9 +453,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

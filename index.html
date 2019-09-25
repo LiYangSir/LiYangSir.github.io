@@ -168,6 +168,179 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-fsolve" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/09/25/fsolve/">fslove - Matlab求解多元多次方程组</a>
+    </h1>
+  
+
+        
+        <a href="2019/09/25/fsolve/" class="archive-article-date">
+  	<time datetime="2019-09-25T13:31:02.203Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="fslove-Matlab求解多元多次方程组"><a href="#fslove-Matlab求解多元多次方程组" class="headerlink" title="fslove - Matlab求解多元多次方程组"></a>fslove - Matlab求解多元多次方程组</h1><p><strong>简介：</strong> 之前看到网上的一些资料良莠不齐，各种转载之类的，根本无法解决实际问题，所以我打算把自己的学到的总结一下，以实例出发讲解fsolve。<br>示例如下：<br>$$<br>\begin{cases}<br>2x_1 - x_2 = e^{ax_1} \<br>-x_1 + 2x_2 = e^{ax_2} \<br>\end{cases}<br>$$<br>具体的求解过程在后面 <a href="#jump">点击跳转</a></p>
+<h2 id="1-fsolve的基本使用"><a href="#1-fsolve的基本使用" class="headerlink" title="1. fsolve的基本使用"></a>1. fsolve的基本使用</h2><p>调用格式一：</p>
+<blockquote>
+<p>X = fslove(FUN,X0)</p>
+<p>功能：给定初值X0，求解方程组的解，X就是返回的解</p>
+</blockquote>
+<p>调用格式二：</p>
+<blockquote>
+<p>X = fsolve(FUN,X0,OPTIONS)</p>
+<p>功能:同上，并解决默认参数优化为options指定值</p>
+</blockquote>
+<p>调用格式三：</p>
+<blockquote>
+<p>[X,FVAL] = fslove(FUN,X0,…)</p>
+<p>功能：返回X处目标函数值</p>
+</blockquote>
+<p>调用格式四：</p>
+<blockquote>
+<p>[X,FVAL,EXITFLAG] = fslove(FUN,X0,…)</p>
+<p>功能：返回EXITFLAG的值，用来描述计算退出的条件，其中EXITFLAG取值和相应的含义如下表。（主要作为判断条件来使用）</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">EXITFLAG</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="center">函数fslove收敛于解X处</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">X的变化小于限制</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">残差变化小于限制</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">重要搜索方向小于限制</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">达到最大迭代次数或者评价标准</td>
+</tr>
+<tr>
+<td align="center">-1</td>
+<td align="center">算法由输出函数终止</td>
+</tr>
+<tr>
+<td align="center">-2</td>
+<td align="center">算法无法收敛到解的点</td>
+</tr>
+<tr>
+<td align="center">-3</td>
+<td align="center">信赖域半径太小</td>
+</tr>
+<tr>
+<td align="center">-4</td>
+<td align="center">线搜索在当前不能充分减少残差</td>
+</tr>
+</tbody></table>
+<p>调用格式五：</p>
+<blockquote>
+<p>[X,FVAL,EXITFLAG,OUTPUT] = fslove(FUN,X0,…)</p>
+<p>功能：包含OUTPUT的输出</p>
+</blockquote>
+<p>调用格式六：</p>
+<blockquote>
+<p>[X,FVAL,EXITFLAG,OUTPUT,JACOB] = fslove(FUN,X0,…)</p>
+<p>功能：返回雅各比矩阵</p>
+</blockquote>
+<p><span id="jump"></span></p>
+<h2 id="2-方程求解"><a href="#2-方程求解" class="headerlink" title="2.方程求解"></a>2.方程求解</h2><p>(1) 编制函数文件fun.m</p>
+<p>编写函数主要用来书写函数的表达式。</p>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function f <span class="built_in">=</span> fun(x,a,b,c)  <span class="comment">% b c可以是随意的参数</span></span><br><span class="line">f1 <span class="built_in">=</span> <span class="number">2</span>*x(<span class="number">1</span>)-x(<span class="number">2</span>)-exp(a*x(<span class="number">1</span>));</span><br><span class="line">f2 <span class="built_in">=</span> -x(<span class="number">1</span>)+<span class="number">2</span>*x(<span class="number">2</span>)-exp(a*x(<span class="number">2</span>));</span><br><span class="line">f <span class="built_in">=</span> [f1;f2];</span><br><span class="line"></span><br><span class="line"><span class="comment">% 也可以写成下面的方式</span></span><br><span class="line"><span class="comment">% f = [2*x(1)-x(2)-exp(a*x(1));-x(1)+2*x(2)-exp(a*x(2))];</span></span><br></pre></td></tr></table></figure>
+
+<p>(2) 给定函数的参数值和初值（解在周围寻找）</p>
+<p>调用求解函数 fslove</p>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt; a <span class="built_in">=</span> -<span class="number">1</span>;</span><br><span class="line">&gt;&gt; x0 <span class="built_in">=</span> [-<span class="number">5</span>,-<span class="number">4</span>];</span><br><span class="line">&gt;&gt; [x,FVAL,EXITFLAG,OUTPUT,JACOB] <span class="built_in">=</span> fsolve(@(x)fun(x,a,<span class="number">1</span>,<span class="number">1</span>),x0);</span><br></pre></td></tr></table></figure>
+
+<p>@(x)fun(x,a,1,1)调用fun函数，函数的参数是a,1,1,求解x的值<br>执行后调用x返回，也就是X的解。</p>
+<blockquote>
+<p>x =</p>
+<p>&emsp;&emsp;0.5671&emsp;&emsp;&emsp;0.5671</p>
+</blockquote>
+<p>调用FVAL显示在目标解的函数值，可以看出，FVAL越小越接近真实解。</p>
+<blockquote>
+<p>FVAL =</p>
+<p>&emsp;&emsp;1.0e-09 *</p>
+<p>&emsp;&emsp;-0.4242<br>&emsp;&emsp;-0.3753</p>
+</blockquote>
+<p>调用EXITFLAG 结合上面的表格可以知道，函数FSOLVE收敛于解X处。</p>
+<blockquote>
+<p>EXITFLAG =</p>
+<p>&emsp;&emsp;1</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">matlab,fsolve</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2019/09/25/fsolve/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Java" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -358,7 +531,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++ java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">C++,java</a>
         		</li>
       		
 		</ul>
@@ -1022,11 +1195,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++ java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++,java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1035,6 +1204,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">matlab,fsolve</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
             
             <div class="clearfix"></div>
