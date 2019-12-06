@@ -168,41 +168,38 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-ScienceNetWork" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-translate" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/12/06/translate/">制作属于自己的翻译软件（基于PyQt5+Python+实时翻译)</a>
+    </h1>
+  
+
+        
+        <a href="2019/12/06/translate/" class="archive-article-date">
+  	<time datetime="2019-12-06T10:25:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="如何礼貌的科学上网（翻墙）SSR"><a href="#如何礼貌的科学上网（翻墙）SSR" class="headerlink" title="如何礼貌的科学上网（翻墙）SSR"></a>如何礼貌的科学上网（翻墙）SSR</h1><p>对于新手同志来说翻墙可以说是非常痛苦的一件事，网上的资料也是参差不齐，国家自己不推崇这样的活动，一部分为了安全，另外一部分保护自己国家的东西，有一种闭门造车的感觉。</p>
-<p>翻墙的<strong>好处</strong>：</p>
-<ul>
-<li>可以了解国家更加前沿的知识</li>
-<li>观看国外一些优秀的视频进行学习</li>
-<li>还有一部分是为了娱乐</li>
-</ul>
-<p>@<a href="目录">TOC</a></p>
-<p>&emsp;&emsp;很多人要问免费的vpn在弄，弄一个永久的vpn，在这里我要告诉小伙伴的是：<strong>不要想了，没有的</strong>。很多都是挂着免费的旗号变着法的收钱，我自己亲身经历了很多，所以在这里告诉大家。</p>
-<p>&emsp;&emsp;在本片博客当中主要介绍如何搭建飞机场（SSR）也就是要花钱的，也不贵很便宜的（￥10/月）。相对来说比较稳定。</p>
-<h2 id="1-下载SSR软件"><a href="#1-下载SSR软件" class="headerlink" title="1.下载SSR软件"></a>1.下载SSR软件</h2><p>&emsp;&emsp;我这里给大家提供一款SSR版本，如果不是最新的大家可以去网上直接下载即可，我这里提供阿里巴巴的数据对象存储桶（大家如果想学评论一下，我可以教大家怎么弄，百度云过时啦）</p>
-<p>下载飞机：<a href="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/ShadowsocksR-win-4.9.0.rar" target="_blank" rel="noopener">SSR飞机场</a>  直接下载或者直接复制</p>
-<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ssr-save.oss-cn-hangzhou.aliyuncs.com/ShadowsocksR-win-<span class="number">4.9</span>.<span class="number">0</span>.rar</span><br></pre></td></tr></table></figure>
+        <h1 id="制作属于自己的翻译软件（基于PyQt5-Python-实时翻译"><a href="#制作属于自己的翻译软件（基于PyQt5-Python-实时翻译" class="headerlink" title="制作属于自己的翻译软件（基于PyQt5+Python+实时翻译)"></a>制作属于自己的翻译软件（基于PyQt5+Python+实时翻译)</h1><h2 id="翻译软件上传到github上。"><a href="#翻译软件上传到github上。" class="headerlink" title="翻译软件上传到github上。"></a>翻译软件上传到github上。</h2><p>软件地址:<a href="https://github.com/LiYangSir/Translate-Software.git" target="_blank" rel="noopener">translate.exe</a></p>
+<p>源码地址: <a href="https://github.com/LiYangSir/Translate.git" target="_blank" rel="noopener">源码</a></p>
+<h3 id="软件截图"><a href="#软件截图" class="headerlink" title="软件截图"></a>软件截图</h3><p><img src="https://img-blog.csdnimg.cn/20191206164851850.png" alt="软件截图"></p>
+<p><img src="https://img-blog.csdnimg.cn/20191206165201125.png" alt></p>
+<h2 id="主要的思想"><a href="#主要的思想" class="headerlink" title="主要的思想"></a>主要的思想</h2><h3 id="界面方面"><a href="#界面方面" class="headerlink" title="界面方面"></a>界面方面</h3><p>&emsp;&emsp;界面主要采用PyQt5的QtDesigner来制作，主要是因为QT的界面可以支持CSS样式，制作起来比较好看，当然为了简单，我自己也没有加任何特效。读者可以自行加载CSS样式。</p>
+<p>&emsp;&emsp;这里没有直接采用tkinter也是想试一下QT，对于熟悉tkinter的同学，可以自己改进，也比较简单。</p>
+<p><strong>注意：</strong> 翻译这个按钮其实没有用，增加了实时翻译的效果，所以不太会用到翻译按钮，这里加上翻译按钮主要是为了更好的模仿一些翻译软件。</p>
+<h3 id="程序方面"><a href="#程序方面" class="headerlink" title="程序方面"></a>程序方面</h3><p>&emsp;&emsp;使用的Python作为编程软件，一方面是爬取方便，另一方面也比较简单 (-_-)。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 主要文件Translate.py</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">translateText</span><span class="params">(self)</span>:</span> <span class="comment"># 翻译文本</span></span><br><span class="line">        text = self.translate_in.toPlainText()</span><br><span class="line">        <span class="keyword">if</span> text != <span class="string">''</span>:</span><br><span class="line">            self.data[<span class="string">'i'</span>] = text</span><br><span class="line">            data = urllib.parse.urlencode(self.data).encode(<span class="string">'utf-8'</span>)</span><br><span class="line">            request = urllib.request.urlopen(self.url, data)</span><br><span class="line">            html = request.read().decode(<span class="string">'utf-8'</span>)</span><br><span class="line">            target = json.loads(html)</span><br><span class="line">            <span class="comment"># print(target['translateResult'])</span></span><br><span class="line">            result = []</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(len(target[<span class="string">'translateResult'</span>])):</span><br><span class="line">                res = target[<span class="string">'translateResult'</span>][i][<span class="number">0</span>][<span class="string">'tgt'</span>]</span><br><span class="line">                result.append(res)</span><br><span class="line">            self.translate_out.setPlainText(<span class="string">'\n'</span>.join(result))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">copy_text</span><span class="params">(self)</span>:</span>  <span class="comment"># 复制文本</span></span><br><span class="line">        clipboard = QApplication.clipboard()   <span class="comment"># 剪切板</span></span><br><span class="line">        clipboard.setText(self.translate_out.toPlainText())</span><br></pre></td></tr></table></figure>
 
-<h2 id="2-购买订阅地址"><a href="#2-购买订阅地址" class="headerlink" title="2.购买订阅地址"></a>2.购买订阅地址</h2><p>&emsp;&emsp;目前市面上有很多的外国服务器，经过自己的一番寻找，找了很多的最终决定给大家推荐两个性价比较高的的订阅。点击标题即可去往登陆界面</p>
-<p>（1）<a href="https://scienceupnet.com/auth/login" target="_blank" rel="noopener">scienceupnet.com</a></p>
-<p>&emsp;&emsp;这个是朋友推荐给我的，之前感觉很还不错，稳定也不错，当然推广力度很多，各位可以登陆后注册就可以啦，点击套餐购买就可以了，也可以先买10天尝尝鲜。<br><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/select.png" alt="select"></p>
-<p>（2）<a href="https://ssrcloud.org/auth/login" target="_blank" rel="noopener">ssrcloud</a></p>
-<p>&emsp;&emsp;这是外国的一家服务器，相对来说比较好，也是我一直在用的，和上面一样登陆注册即可，套餐有很多，大家可以自行选择。</p>
-<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/select1.png" alt="select"></p>
-<h2 id="3-连接"><a href="#3-连接" class="headerlink" title="3.连接"></a>3.连接</h2><p>&emsp;&emsp;购买以后，回到用户中心，点击拷贝地址进行拷贝。<br><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/subcribe.png" alt="subcribe"></p>
-<p>&emsp;&emsp;在电脑右下角找到小飞机右键找到 <strong>服务器订阅-SSR服务器订阅设置</strong>把刚才复制的地址拷贝到网址栏目当中即可。并且把负载均衡去掉。然后 <strong>服务器订阅-更新服务器订阅（不通过代理）</strong>。大功告成！！！</p>
-<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/youjian.png" alt="youjian"></p>
-<p>我在这里注重说一下右键里面有一个系统代理模式和代理规则。</p>
-<h3 id="1-系统代理模式"><a href="#1-系统代理模式" class="headerlink" title="1.系统代理模式"></a>1.系统代理模式</h3><p>&emsp;&emsp;系统代理模式分为直连，PAC和全局。一般情况都会选择全局，这和后面的代理规则有关。</p>
-<p>&emsp;&emsp;<strong>直连</strong> 就和普通网络没啥区别了，<strong>PAC模式</strong> 就是外网翻墙连接，内网直接连接。 <strong>全局连接</strong> 就是按照代理规则当中的进行设置。</p>
-<h3 id="2-代理规则"><a href="#2-代理规则" class="headerlink" title="2.代理规则"></a>2.代理规则</h3><p>&emsp;&emsp;绕过局域网或者大陆，意思就是说，如果你要连接国内的服务器（百度，知乎，CSDN）就是直接进行连接，就是把他们绕过去，不进行代理。一般情况选择 <strong>绕过局域网和大陆</strong></p>
-<p>大功告成！！<br>最后展示一下成果</p>
-<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/google.png" alt="google"></p>
-<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/youtube.png" alt="youtube"></p>
+<p>整体来说还是比较简单的，如果大家需要tkinter的版本可以和我留言，我可以外加一篇。</p>
+<p><img src="https://img-blog.csdnimg.cn/20191206170644586.jpg" alt="小猫咪"></p>
 
       
 
@@ -211,11 +208,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">PyQt5, Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="2019/09/26/ScienceNetWork/">展开全文 >></a>
+          <a class="article-more-a" href="2019/12/06/translate/">展开全文 >></a>
         </p>
       
 
@@ -1048,6 +1056,109 @@
 
 
   
+    <article id="post-ScienceNetWork" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="2019/07/10/ScienceNetWork/">如何礼貌的科学上网（翻墙）SSR</a>
+    </h1>
+  
+
+        
+        <a href="2019/07/10/ScienceNetWork/" class="archive-article-date">
+  	<time datetime="2019-07-10T10:25:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="如何礼貌的科学上网（翻墙）SSR"><a href="#如何礼貌的科学上网（翻墙）SSR" class="headerlink" title="如何礼貌的科学上网（翻墙）SSR"></a>如何礼貌的科学上网（翻墙）SSR</h1><p>对于新手同志来说翻墙可以说是非常痛苦的一件事，网上的资料也是参差不齐，国家自己不推崇这样的活动，一部分为了安全，另外一部分保护自己国家的东西，有一种闭门造车的感觉。</p>
+<p>翻墙的<strong>好处</strong>：</p>
+<ul>
+<li>可以了解国家更加前沿的知识</li>
+<li>观看国外一些优秀的视频进行学习</li>
+<li>还有一部分是为了娱乐</li>
+</ul>
+<p>@<a href="目录">TOC</a></p>
+<p>&emsp;&emsp;很多人要问免费的vpn在弄，弄一个永久的vpn，在这里我要告诉小伙伴的是：<strong>不要想了，没有的</strong>。很多都是挂着免费的旗号变着法的收钱，我自己亲身经历了很多，所以在这里告诉大家。</p>
+<p>&emsp;&emsp;在本片博客当中主要介绍如何搭建飞机场（SSR）也就是要花钱的，也不贵很便宜的（￥10/月）。相对来说比较稳定。</p>
+<h2 id="1-下载SSR软件"><a href="#1-下载SSR软件" class="headerlink" title="1.下载SSR软件"></a>1.下载SSR软件</h2><p>&emsp;&emsp;我这里给大家提供一款SSR版本，如果不是最新的大家可以去网上直接下载即可，我这里提供阿里巴巴的数据对象存储桶（大家如果想学评论一下，我可以教大家怎么弄，百度云过时啦）</p>
+<p>下载飞机：<a href="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/ShadowsocksR-win-4.9.0.rar" target="_blank" rel="noopener">SSR飞机场</a>  直接下载或者直接复制</p>
+<figure class="highlight m"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://ssr-save.oss-cn-hangzhou.aliyuncs.com/ShadowsocksR-win-<span class="number">4.9</span>.<span class="number">0</span>.rar</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-购买订阅地址"><a href="#2-购买订阅地址" class="headerlink" title="2.购买订阅地址"></a>2.购买订阅地址</h2><p>&emsp;&emsp;目前市面上有很多的外国服务器，经过自己的一番寻找，找了很多的最终决定给大家推荐两个性价比较高的的订阅。点击标题即可去往登陆界面</p>
+<p>（1）<a href="https://scienceupnet.com/auth/login" target="_blank" rel="noopener">scienceupnet.com</a></p>
+<p>&emsp;&emsp;这个是朋友推荐给我的，之前感觉很还不错，稳定也不错，当然推广力度很多，各位可以登陆后注册就可以啦，点击套餐购买就可以了，也可以先买10天尝尝鲜。<br><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/select.png" alt="select"></p>
+<p>（2）<a href="https://ssrcloud.org/auth/login" target="_blank" rel="noopener">ssrcloud</a></p>
+<p>&emsp;&emsp;这是外国的一家服务器，相对来说比较好，也是我一直在用的，和上面一样登陆注册即可，套餐有很多，大家可以自行选择。</p>
+<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/select1.png" alt="select"></p>
+<h2 id="3-连接"><a href="#3-连接" class="headerlink" title="3.连接"></a>3.连接</h2><p>&emsp;&emsp;购买以后，回到用户中心，点击拷贝地址进行拷贝。<br><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/subcribe.png" alt="subcribe"></p>
+<p>&emsp;&emsp;在电脑右下角找到小飞机右键找到 <strong>服务器订阅-SSR服务器订阅设置</strong>把刚才复制的地址拷贝到网址栏目当中即可。并且把负载均衡去掉。然后 <strong>服务器订阅-更新服务器订阅（不通过代理）</strong>。大功告成！！！</p>
+<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/youjian.png" alt="youjian"></p>
+<p>我在这里注重说一下右键里面有一个系统代理模式和代理规则。</p>
+<h3 id="1-系统代理模式"><a href="#1-系统代理模式" class="headerlink" title="1.系统代理模式"></a>1.系统代理模式</h3><p>&emsp;&emsp;系统代理模式分为直连，PAC和全局。一般情况都会选择全局，这和后面的代理规则有关。</p>
+<p>&emsp;&emsp;<strong>直连</strong> 就和普通网络没啥区别了，<strong>PAC模式</strong> 就是外网翻墙连接，内网直接连接。 <strong>全局连接</strong> 就是按照代理规则当中的进行设置。</p>
+<h3 id="2-代理规则"><a href="#2-代理规则" class="headerlink" title="2.代理规则"></a>2.代理规则</h3><p>&emsp;&emsp;绕过局域网或者大陆，意思就是说，如果你要连接国内的服务器（百度，知乎，CSDN）就是直接进行连接，就是把他们绕过去，不进行代理。一般情况选择 <strong>绕过局域网和大陆</strong></p>
+<p>大功告成！！<br>最后展示一下成果</p>
+<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/google.png" alt="google"></p>
+<p><img src="https://ssr-save.oss-cn-hangzhou.aliyuncs.com/youtube.png" alt="youtube"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">MarkDown</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="2019/07/10/ScienceNetWork/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Second" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1272,11 +1383,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">C++,java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1284,11 +1391,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">MarkDown</a>
+                <a href="javascript:void(0)" class="js-tag color4">C++,java</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">matlab,fsolve</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">PyQt5, Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
             
             <div class="clearfix"></div>
